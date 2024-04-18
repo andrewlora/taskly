@@ -3,8 +3,8 @@ import cors from "cors";
 import "dotenv/config";
 import express from "express";
 
+import { errorHandler } from "./libs/middleware.js";
 import userRouter from "./routes/user.route.js";
-
 const PORT = process.env.PORT || 3000;
 const app = express();
 
@@ -22,6 +22,7 @@ app.use("/api/v1/users", userRouter);
 app.use("*", (req, res) => {
   res.status(404).json({ message: "not found" });
 });
+app.use(errorHandler);
 app.listen(PORT, () => {
   console.log(`Server listening on port ${PORT}`);
 });
