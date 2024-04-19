@@ -27,7 +27,7 @@ export default function SignUp() {
 
   const doSubmit = async (values) => {
     try {
-      const res = await fetch(`${API_BASE_URL}/auth/signup`, {
+      const res = await fetch(`${API_BASE_URL}/auth/signUp`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
