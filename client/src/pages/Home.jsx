@@ -1,10 +1,10 @@
-import { Box, Flex, Heading, Image, Link, Stack, Text } from "@chakra-ui/react";
-import { Link as RouterLink } from "react-router-dom";
-import productiveSvg from "/productive.svg";
+import { Box, Flex, Heading, Image, Link, Stack, Text } from '@chakra-ui/react';
+import { Link as RouterLink } from 'react-router-dom';
+import productiveSvg from '/productive.svg';
 export default function Home() {
   return (
     <Flex
-      direction={{ base: "column", md: "row" }}
+      direction={{ base: 'column', md: 'row' }}
       gap={6}
       p={14}
       maxW="6-xl"
@@ -13,11 +13,11 @@ export default function Home() {
       <Stack flex="1" alignSelf="center">
         <Heading
           as="h1"
-          fontSize={{ base: "4xl", lg: "6xl" }}
+          fontSize={{ base: '4xl', lg: '6xl' }}
           fontWeight="bold"
           color="gray.700"
         >
-          Make your{" "}
+          Make your{' '}
           <Text as="span" color="gray.500">
             perfect
           </Text>
@@ -31,7 +31,7 @@ export default function Home() {
         </Box>
         <Link
           as={RouterLink}
-          to={"/profile"}
+          to={'/profile'}
           fontWeight="bold"
           color="blue.400"
         >

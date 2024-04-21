@@ -1,7 +1,7 @@
-import { ObjectId } from "mongodb";
-import { db } from "../libs/dbConnect.js";
+import { ObjectId } from 'mongodb';
+import { db } from '../libs/dbConnect.js';
 
-const collection = db.collection("tasks");
+const collection = db.collection('tasks');
 
 export const getTasksByUser = async (req, res, next) => {
   try {
@@ -9,7 +9,7 @@ export const getTasksByUser = async (req, res, next) => {
     const { status, orderBy } = req.query;
     const sort = orderBy ? { [orderBy]: 1 } : {};
     if (status) {
-      query["status"] = status;
+      query['status'] = status;
     }
     const page = parseInt(req.query.page) || 1;
     const pageSize = 4;
@@ -34,7 +34,7 @@ export const getTask = async (req, res, next) => {
     const task = await collection.findOne(query);
 
     if (!task) {
-      return next({ status: 404, message: "Task not found!" });
+      return next({ status: 404, message: 'Task not found!' });
     }
 
     res.status(200).json(task);
@@ -60,7 +60,7 @@ export const deleteTask = async (req, res, next) => {
   try {
     const query = { _id: new ObjectId(req.params.id) };
     await collection.deleteOne(query);
-    res.status(200).json({ message: "Task has been deleted" });
+    res.status(200).json({ message: 'Task has been deleted' });
   } catch (error) {
     next({ status: 500, error });
   }
@@ -77,7 +77,7 @@ export const updateTask = async (req, res, next) => {
       },
     };
     const options = {
-      returnDocument: "after",
+      returnDocument: 'after',
     };
     const updatedTask = await collection.findOneAndUpdate(query, data, options);
     res.status(200).json(updatedTask);

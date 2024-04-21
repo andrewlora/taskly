@@ -8,12 +8,12 @@ import {
   Input,
   Stack,
   Text,
-} from "@chakra-ui/react";
-import { useForm } from "react-hook-form";
-import toast from "react-hot-toast";
-import { Link, useNavigate } from "react-router-dom";
-import { useUser } from "../context/UserContext.jsx";
-import { API_BASE_URL } from "../util.js";
+} from '@chakra-ui/react';
+import { useForm } from 'react-hook-form';
+import toast from 'react-hot-toast';
+import { Link, useNavigate } from 'react-router-dom';
+import { useUser } from '../context/UserContext.jsx';
+import { API_BASE_URL } from '../util.js';
 
 export default function SignUp() {
   const { updateUser } = useUser();
@@ -28,22 +28,22 @@ export default function SignUp() {
   const doSubmit = async (values) => {
     try {
       const res = await fetch(`${API_BASE_URL}/auth/signUp`, {
-        method: "POST",
+        method: 'POST',
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         },
         body: JSON.stringify(values),
       });
       const data = await res.json();
       if (res.status === 200) {
-        toast.success("Sign Up Successful. You are now logged in");
+        toast.success('Sign Up Successful. You are now logged in');
         updateUser(data);
-        navigate("/profile");
+        navigate('/profile');
       } else {
         toast.error(data.message);
       }
     } catch (error) {
-      toast.error("Something went wrong");
+      toast.error('Something went wrong');
     }
   };
 
@@ -66,7 +66,7 @@ export default function SignUp() {
               id="username"
               type="text"
               placeholder="username"
-              {...register("username", { required: "Username is required" })}
+              {...register('username', { required: 'Username is required' })}
             />
             <FormErrorMessage>
               {errors.username && errors.username.message}
@@ -77,7 +77,7 @@ export default function SignUp() {
               id="email"
               type="email"
               placeholder="email"
-              {...register("email", { required: "Email is required" })}
+              {...register('email', { required: 'Email is required' })}
             />
             <FormErrorMessage>
               {errors.email && errors.email.message}
@@ -88,7 +88,7 @@ export default function SignUp() {
               id="password"
               type="password"
               placeholder="password"
-              {...register("password", { required: "Password is required" })}
+              {...register('password', { required: 'Password is required' })}
             />
             <FormErrorMessage>
               {errors.password && errors.password.message}
@@ -106,7 +106,7 @@ export default function SignUp() {
       </form>
       <Flex gap="2" mt="5">
         <Text>Have an account?</Text>
-        <Link to={"/signIn"}>
+        <Link to={'/signIn'}>
           <Text as="span" color="blue.400">
             Sign in
           </Text>

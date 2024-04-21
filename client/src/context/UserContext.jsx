@@ -1,10 +1,10 @@
-import { createContext, useContext } from "react";
-import { useLocalStorage } from "../util.js";
+import { createContext, useContext } from 'react';
+import { useLocalStorage } from '../util.js';
 
 const UserContext = createContext();
 
 const UserProvider = ({ children }) => {
-  const [user, setUser] = useLocalStorage("taskly_user", null);
+  const [user, setUser] = useLocalStorage('taskly_user', null);
 
   const updateUser = (user) => {
     setUser(user);
@@ -21,7 +21,7 @@ const UserProvider = ({ children }) => {
 const useUser = () => {
   const context = useContext(UserContext);
   if (context === undefined) {
-    throw new Error("useUser must be used within a UserProvider");
+    throw new Error('useUser must be used within a UserProvider');
   }
   return context;
 };

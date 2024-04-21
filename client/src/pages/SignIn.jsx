@@ -8,12 +8,12 @@ import {
   Input,
   Stack,
   Text,
-} from "@chakra-ui/react";
-import { useForm } from "react-hook-form";
-import toast from "react-hot-toast";
-import { Link, useNavigate } from "react-router-dom";
-import { useUser } from "../context/UserContext.jsx";
-import { API_BASE_URL } from "../util.js";
+} from '@chakra-ui/react';
+import { useForm } from 'react-hook-form';
+import toast from 'react-hot-toast';
+import { Link, useNavigate } from 'react-router-dom';
+import { useUser } from '../context/UserContext.jsx';
+import { API_BASE_URL } from '../util.js';
 
 export default function SignIn() {
   const navigate = useNavigate();
@@ -28,24 +28,24 @@ export default function SignIn() {
   const doSubmit = async (values) => {
     try {
       const res = await fetch(`${API_BASE_URL}/auth/signIn`, {
-        method: "POST",
+        method: 'POST',
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         },
-        credentials: "include",
+        credentials: 'include',
         body: JSON.stringify(values),
       });
       const data = await res.json();
       if (res.status === 200) {
-        toast.success("Sign In Successful");
+        toast.success('Sign In Successful');
         updateUser(data);
-        navigate("/profile");
+        navigate('/profile');
       } else {
         toast.error(data.message);
       }
     } catch (error) {
       console.log(error);
-      toast.error("Something went wrong");
+      toast.error('Something went wrong');
     }
   };
   return (
@@ -66,7 +66,7 @@ export default function SignIn() {
               id="email"
               type="email"
               placeholder="email"
-              {...register("email", { required: "Email is required" })}
+              {...register('email', { required: 'Email is required' })}
             />
             <FormErrorMessage>
               {errors.email && errors.email.message}
@@ -77,7 +77,7 @@ export default function SignIn() {
               id="password"
               type="password"
               placeholder="password"
-              {...register("password", { required: "Password is required" })}
+              {...register('password', { required: 'Password is required' })}
             />
             <FormErrorMessage>
               {errors.password && errors.password.message}
@@ -95,7 +95,7 @@ export default function SignIn() {
       </form>
       <Flex gap="2" mt="5">
         <Text>Don`&apos;`t have an account?</Text>
-        <Link to={"/signUp"}>
+        <Link to={'/signUp'}>
           <Text as="span" color="blue.400">
             Sign up
           </Text>

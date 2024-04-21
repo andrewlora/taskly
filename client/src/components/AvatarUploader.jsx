@@ -1,6 +1,6 @@
-import { Center, Image, Input, Tooltip } from "@chakra-ui/react";
-import { useCallback } from "react";
-import { useDropzone } from "react-dropzone";
+import { Center, Image, Input, Tooltip } from '@chakra-ui/react';
+import { useCallback } from 'react';
+import { useDropzone } from 'react-dropzone';
 
 export function AvatarUploader({ imageUrl, onFieldChange, setFiles }) {
   const convertFileToUrl = (file) => URL.createObjectURL(file);
@@ -13,8 +13,8 @@ export function AvatarUploader({ imageUrl, onFieldChange, setFiles }) {
   const { getRootProps, getInputProps } = useDropzone({
     onDrop,
     accept: {
-      "image/jpeg": [],
-      "image/png": [],
+      'image/jpeg': [],
+      'image/png': [],
     },
   });
 

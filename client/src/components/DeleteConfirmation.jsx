@@ -6,7 +6,7 @@ import {
   AlertDialogHeader,
   AlertDialogOverlay,
   Button,
-} from "@chakra-ui/react";
+} from '@chakra-ui/react';
 
 export default function DeleteConfirmation({
   alertTitle,

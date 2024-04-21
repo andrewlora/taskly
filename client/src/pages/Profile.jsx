@@ -10,15 +10,15 @@ import {
   Stack,
   Text,
   useDisclosure,
-} from "@chakra-ui/react";
-import { useState } from "react";
-import { Controller, useForm } from "react-hook-form";
-import toast from "react-hot-toast";
-import { Link as RouterLink, useNavigate } from "react-router-dom";
-import { AvatarUploader } from "../components/AvatarUploader.jsx";
-import DeleteConfirmation from "../components/DeleteConfirmation.jsx";
-import { useUser } from "../context/UserContext.jsx";
-import { API_BASE_URL } from "../util.js";
+} from '@chakra-ui/react';
+import { useState } from 'react';
+import { Controller, useForm } from 'react-hook-form';
+import toast from 'react-hot-toast';
+import { Link as RouterLink, useNavigate } from 'react-router-dom';
+import { AvatarUploader } from '../components/AvatarUploader.jsx';
+import DeleteConfirmation from '../components/DeleteConfirmation.jsx';
+import { useUser } from '../context/UserContext.jsx';
+import { API_BASE_URL } from '../util.js';
 
 export default function Profile() {
   const navigate = useNavigate();
@@ -42,18 +42,18 @@ export default function Profile() {
 
   const handleFileUpload = async (files) => {
     const formData = new FormData();
-    formData.append("image", files[0]);
+    formData.append('image', files[0]);
     try {
       const res = await fetch(`${API_BASE_URL}/image/upload`, {
-        method: "POST",
-        credentials: "include",
+        method: 'POST',
+        credentials: 'include',
         body: formData,
       });
       const response = await res.json();
       return response.imageUrl;
     } catch (error) {
       console.log(error);
-      toast.error("File Upload Error: ", error);
+      toast.error('File Upload Error: ', error);
     }
   };
 
@@ -66,54 +66,54 @@ export default function Profile() {
         }
       }
       const res = await fetch(`${API_BASE_URL}/users/update/${user._id}`, {
-        method: "PATCH",
-        credentials: "include",
+        method: 'PATCH',
+        credentials: 'include',
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         },
         body: JSON.stringify(values),
       });
       const data = await res.json();
       if (res.status === 200) {
-        resetField("password");
+        resetField('password');
         updateUser(data);
-        toast.success("Profile Updated");
+        toast.success('Profile Updated');
       } else {
         toast.error(data.message);
       }
     } catch (error) {
-      toast.error("Profile Update Error: ", error);
+      toast.error('Profile Update Error: ', error);
     }
   };
 
   const handleDeleteUser = async () => {
     try {
       const res = await fetch(`${API_BASE_URL}/users/delete/${user._id}`, {
-        method: "DELETE",
-        credentials: "include",
+        method: 'DELETE',
+        credentials: 'include',
       });
       const data = await res.json();
       if (res.status === 200) {
         toast.success(data.message);
         updateUser(null);
-        navigate("/");
+        navigate('/');
       } else {
         toast.error(data.message);
       }
     } catch (error) {
-      toast.error("Delete Error: ", error);
+      toast.error('Delete Error: ', error);
     }
   };
 
   const handleSignOut = async () => {
     try {
       const res = await fetch(`${API_BASE_URL}/auth/signOut`, {
-        credentials: "include",
+        credentials: 'include',
       });
       const data = await res.json();
       toast.success(data.message);
       updateUser(null);
-      navigate("/");
+      navigate('/');
     } catch (error) {
       toast.error(error);
     }
@@ -155,7 +155,7 @@ export default function Profile() {
               id="username"
               type="text"
               placeholder="username"
-              {...register("username", { required: "Username is required" })}
+              {...register('username', { required: 'Username is required' })}
             />
             <FormErrorMessage>
               {errors.username && errors.username.message}
@@ -166,7 +166,7 @@ export default function Profile() {
               id="email"
               type="email"
               placeholder="email"
-              {...register("email", { required: "Email is required" })}
+              {...register('email', { required: 'Email is required' })}
             />
             <FormErrorMessage>
               {errors.email && errors.email.message}
@@ -177,7 +177,7 @@ export default function Profile() {
               id="password"
               type="password"
               placeholder="New password"
-              {...register("password", { required: "Password is required" })}
+              {...register('password', { required: 'Password is required' })}
             />
             <FormErrorMessage>
               {errors.password && errors.password.message}
@@ -204,7 +204,7 @@ export default function Profile() {
           textAlign="center"
           textColor="white"
           fontWeight="semibold"
-          _hover={{ bg: "green.600" }}
+          _hover={{ bg: 'green.600' }}
         >
           Create New Task
         </Link>
@@ -226,7 +226,7 @@ export default function Profile() {
             as={RouterLink}
             to="/tasks"
             color="teal"
-            _hover={{ textDecor: "none" }}
+            _hover={{ textDecor: 'none' }}
           >
             Show Tasks
           </Link>

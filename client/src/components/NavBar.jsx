@@ -8,11 +8,11 @@ import {
   MenuItem,
   MenuList,
   Spacer,
-} from "@chakra-ui/react";
-import toast from "react-hot-toast";
-import { Link as RouterLink, useNavigate } from "react-router-dom";
-import { useUser } from "../context/UserContext";
-import { API_BASE_URL } from "../util.js";
+} from '@chakra-ui/react';
+import toast from 'react-hot-toast';
+import { Link as RouterLink, useNavigate } from 'react-router-dom';
+import { useUser } from '../context/UserContext';
+import { API_BASE_URL } from '../util.js';
 
 export default function NavBar() {
   const { user, updateUser } = useUser();
@@ -21,12 +21,12 @@ export default function NavBar() {
   const handleSignOut = async () => {
     try {
       const res = await fetch(`${API_BASE_URL}/auth/signOut`, {
-        credentials: "include",
+        credentials: 'include',
       });
       const data = await res.json();
       toast.success(data.message);
       updateUser(null);
-      navigate("/");
+      navigate('/');
     } catch (error) {
       toast.error(error);
     }
