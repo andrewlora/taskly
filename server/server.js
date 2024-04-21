@@ -3,6 +3,7 @@ import cors from "cors";
 import "dotenv/config";
 import express from "express";
 import fileUpload from "express-fileupload";
+import helmet from "helmet";
 
 import { errorHandler } from "./libs/middleware.js";
 import authRouter from "./routes/auth.route.js";
@@ -10,7 +11,7 @@ import cldRouter from "./routes/cloudinary.route.js";
 import userRouter from "./routes/user.route.js";
 const PORT = process.env.PORT || 3000;
 const app = express();
-
+app.use(helmet());
 app.use(express.json());
 app.use(cookieParser());
 app.use(fileUpload());
