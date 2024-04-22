@@ -22,9 +22,9 @@ function App() {
         <Route element={<PrivateRoute />}>
           <Route path="/profile" element={<Profile />} />
           <Route path="/create-task" element={<CreateTask />} />
-          <Route path="/update-task" element={<UpdateTask />} />
+          <Route path="/update-task/:taskId" element={<UpdateTask />} />
           <Route path="/tasks" element={<Tasks />} />
-          <Route path="/task/:id" element={<SingleTask />} />
+          <Route path="/tasks/:taskId" element={<SingleTask />} />
         </Route>
       </Routes>
     </BrowserRouter>
