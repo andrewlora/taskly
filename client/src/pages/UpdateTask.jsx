@@ -1,5 +1,40 @@
-const UpdateTask = () => {
-  return <div>UpdateTask</div>;
-};
+import { Box, Heading } from '@chakra-ui/react';
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import UpdateTaskSkeleton from '../_skeletons/UpdateTaskSkeleton';
+import TaskForm from '../components/TaskForm';
+import { API_BASE_URL } from '../util';
 
-export default UpdateTask;
+export default function UpdateTask() {
+  const [task, setTask] = useState();
+  const { taskId } = useParams();
+
+  useEffect(() => {
+    const fetchTask = async () => {
+      const res = await fetch(`${API_BASE_URL}/tasks/${taskId}`, {
+        credentials: 'include',
+      });
+      const data = await res.json();
+      setTask(data);
+    };
+    fetchTask();
+  }, []);
+
+  if (!task) {
+    return <UpdateTaskSkeleton />;
+  }
+  return (
+    <Box p="3" maxW="4xl" mx="auto">
+      <Heading
+        as="h1"
+        fontSize="3xl"
+        fontWeight="semibold"
+        textAlign="center"
+        my="7"
+      >
+        Update Task
+      </Heading>
+      <TaskForm type="update" task={task} />
+    </Box>
+  );
+}
