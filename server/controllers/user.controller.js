@@ -1,8 +1,8 @@
-import bcrypt from "bcrypt";
-import { ObjectId } from "mongodb";
-import { db } from "../libs/dbConnect.js";
+import bcrypt from 'bcrypt';
+import { ObjectId } from 'mongodb';
+import { db } from '../libs/dbConnect.js';
 
-const collection = db.collection("users");
+const collection = db.collection('users');
 
 export const getUser = async (req, res, next) => {
   try {
@@ -10,7 +10,7 @@ export const getUser = async (req, res, next) => {
     const user = await collection.findOne(query);
 
     if (!user) {
-      return next({ status: 404, message: "User not found!" });
+      return next({ status: 404, message: 'User not found!' });
     }
 
     res.status(200).json(user);
@@ -23,7 +23,7 @@ export const updateUser = async (req, res, next) => {
   if (req.user.id !== req.params.id) {
     return next({
       status: 401,
-      message: "You can only update your own account",
+      message: 'You can only update your own account',
     });
   }
   try {
@@ -38,7 +38,7 @@ export const updateUser = async (req, res, next) => {
       },
     };
     const options = {
-      returnDocument: "after",
+      returnDocument: 'after',
     };
 
     const updatedUser = await collection.findOneAndUpdate(query, data, options);
@@ -53,13 +53,13 @@ export const deleteUser = async (req, res, next) => {
   if (req.user.id !== req.params.id) {
     return next({
       status: 401,
-      message: "You can only delete your own account",
+      message: 'You can only delete your own account',
     });
   }
   try {
     const query = { _id: new ObjectId(req.params.id) };
     await collection.deleteOne(query);
-    res.status(200).json({ message: "User has been deleted" });
+    res.status(200).json({ message: 'User has been deleted' });
   } catch (error) {
     next({ status: 500, error });
   }
